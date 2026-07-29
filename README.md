@@ -4,7 +4,7 @@ Welcome to my LeetCode journey! 👋
 
 This repository contains my Java solutions, notes, and learning process while solving LeetCode problems.
 
-My goal is not only to solve problems but also to understand algorithms, improve code quality through refactoring, and document what I learn along the way.
+My goal is  to understand algorithms, improve code quality through refactoring, and document what I learn along the way.
 
 ---
 
