@@ -47,7 +47,7 @@ For every problem, I follow this workflow:
 | Linked List | 3 |
 | Arrays | 3 |
 | Stack | 2 |
-| Queue | 1 |
+| Queue | 2 |
 | Trees | 0 |
 | Graph | 0 |
 | Dynamic Programming | 0 |
