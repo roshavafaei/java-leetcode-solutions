@@ -45,7 +45,7 @@ For every problem, I follow this workflow:
 | Topic | Solved |
 |-------|--------|
 | Linked List | 5 |
-| Arrays | 4 |
+| Arrays | 5 |
 | Stack | 4 |
 | Queue | 5 |
 | Hash Table | 1 |
