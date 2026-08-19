@@ -49,7 +49,7 @@ For every problem, I follow this workflow:
 | Stack | 4 |
 | Queue | 5 |
 | Hash Table | 2 |
-| Trees | 0 |
+| Trees | 1 |
 | Graph | 0 |
 | Dynamic Programming | 0 |
 
