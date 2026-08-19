@@ -1,0 +1,189 @@
+LeetCode 100 - Same Tree
+Problem
+Given the roots of two binary trees, p and q, determine whether they are exactly the same.
+Two trees are considered the same when:
+They have the same structure.
+Corresponding nodes have the same values.
+Example:
+Tree p:        Tree q:
+
+    1              1
+   / \            / \
+  2   3          2   3
+Output:
+true
+But these are not the same:
+Tree p:        Tree q:
+
+    1              1
+   /                \
+  2                  2
+Even though the values are the same, the structure is different.
+Output:
+false
+
+
+⸻
+
+
+Initial Idea
+My idea was to compare the two trees recursively.
+For every pair of nodes:
+Check whether both nodes are null.
+If both nodes exist, compare them.
+Recursively compare the left subtrees.
+Recursively compare the right subtrees.
+If only one node is null, the trees are different.
+The recursive approach fits naturally because each tree can be broken down into smaller left and right subtrees.
+
+
+⸻
+
+
+Mistake I Made
+At first, I used:
+p == q
+to compare two nodes.
+This does not compare the values inside the nodes.
+In Java, when p and q are objects:
+p == q
+checks whether both references point to the exact same object in memory.
+For example:
+p → TreeNode(val = 1)
+q → TreeNode(val = 1)
+Even though:
+p.val == q.val
+is:
+true
+the expression:
+p == q
+can still be:
+false
+because they are two different TreeNode objects.
+The correct comparison is:
+p.val == q.val
+
+
+⸻
+
+
+Final Approach
+There are three main cases.
+Case 1: Both Nodes Are Null
+if (p == null && q == null)
+    return true;
+If both nodes are null, this part of both trees has the same structure.
+
+
+⸻
+
+
+Case 2: Both Nodes Exist
+If both nodes are not null, three conditions must all be true:
+current values are equal
+AND
+left subtrees are equal
+AND
+right subtrees are equal
+So:
+return p.val == q.val
+        && isSameTree(p.left, q.left)
+        && isSameTree(p.right, q.right);
+
+
+⸻
+
+
+Case 3: Only One Node Is Null
+If execution reaches the end, then one node exists while the other is null.
+For example:
+p:          q:
+
+    1           1
+   /             \
+  2               2
+At some point we compare:
+p.left = 2
+q.left = null
+So the structures are different and we return:
+false
+
+
+⸻
+
+
+Solution
+public boolean isSameTree(TreeNode p, TreeNode q) {
+
+    if (p == null && q == null)
+        return true;
+
+    if (p != null && q != null)
+        return p.val == q.val
+                && isSameTree(p.left, q.left)
+                && isSameTree(p.right, q.right);
+
+    return false;
+}
+
+
+⸻
+
+
+Recursive Trace
+Consider:
+p:              q:
+
+     1               1
+    / \             / \
+   2   3           2   3
+The recursive calls look like:
+isSameTree(1, 1)
+│
+├── 1 == 1 ✅
+│
+├── isSameTree(2, 2)
+│   │
+│   ├── 2 == 2 ✅
+│   ├── isSameTree(null, null) → true
+│   └── isSameTree(null, null) → true
+│
+└── isSameTree(3, 3)
+    │
+    ├── 3 == 3 ✅
+    ├── isSameTree(null, null) → true
+    └── isSameTree(null, null) → true
+
+Result → true
+The recursion only returns true if every corresponding pair of nodes matches.
+
+
+⸻
+
+
+What I Learned
+Recursion is a natural way to compare two binary trees.
+Two trees must have both the same values and the same structure.
+p == q compares object references, not the node values.
+To compare the values stored inside two nodes, use:
+p.val == q.val
+Base cases are very important in recursive tree problems.
+Comparing null positions is also necessary because tree structure matters.
+
+
+⸻
+
+
+Complexity
+Let n be the number of nodes in the trees.
+Time Complexity
+O(n)
+In the worst case, we visit every node once.
+Space Complexity
+O(h)
+where h is the height of the tree.
+This space is used by the recursive call stack.
+For a balanced tree:
+O(log n)
+For a completely skewed tree:
+O(n)
