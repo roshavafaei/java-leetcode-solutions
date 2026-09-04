@@ -48,7 +48,7 @@ For every problem, I follow this workflow:
 | Arrays | 7 |
 | Stack | 5 |
 | Queue | 5 |
-| Hash Table | 2 |
+| Hash Table | 4 |
 | Trees | 1 |
 | Graph | 0 |
 | Dynamic Programming | 0 |
