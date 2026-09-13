@@ -19,7 +19,7 @@ Approach - Recursion
 For every node, I calculate:
 1 + max(left subtree depth, right subtree depth)
 The 1 represents the current node itself.
-So:
+So the main recursive formula is:
 return 1 + Math.max(leftDepth, rightDepth);
 The base case is:
 if (root == null)
@@ -36,29 +36,31 @@ public int maxDepth(TreeNode root) {
 
     return 1 + Math.max(leftDepth, rightDepth);
 }
-
-
 Understanding the Recursion
 Consider this tree:
     3
    /
   9
-First:
+The first call is:
 maxDepth(3)
-calls:
+Inside maxDepth(3), the method calls:
 maxDepth(9)
-For node 9:
+Now we are at node 9.
+Node 9 has no children:
 left = null
 right = null
 So:
+maxDepth(null) = 0
+for both sides.
+That means:
 leftDepth = 0
 rightDepth = 0
 Then:
 maxDepth(9)
 = 1 + max(0, 0)
 = 1
-The result 1 means the subtree rooted at 9 contains one node in its longest path.
-Now we return to node 3.
+The result is 1 because node 9 itself counts as one node.
+Now recursion returns back to node 3.
 For node 3:
 leftDepth = 1
 rightDepth = 0
@@ -70,38 +72,43 @@ The longest path is:
 3 → 9
 which contains 2 nodes.
 Why Does a Leaf Have Depth 1?
-This problem defines maximum depth using the number of nodes in the path.
-For a single leaf node:
+Consider a single leaf node:
 9
-its children are both null:
+Its left child is null:
+maxDepth(null) = 0
+Its right child is also null:
 maxDepth(null) = 0
 So:
 maxDepth(9)
 = 1 + max(0, 0)
 = 1
 The 1 represents the leaf node itself.
+So in this problem:
+null → depth 0
+leaf → depth 1
+parent of leaf → depth 2
 Node Count vs Edge Count
 This was an important point for me.
 Depth and height can sometimes be defined using either nodes or edges, depending on the problem.
-A common edge-based definition looks like this:
+Using an edge-based definition:
         3      depth = 0
        /
       9        depth = 1
      /
     5          depth = 2
 Here, depth is the number of edges from the root.
-However, LeetCode 104 defines maximum depth as the number of nodes along the longest path.
-So for:
+However, LeetCode 104 defines maximum depth using the number of nodes along the longest path.
+For this tree:
         3
        /
       9
      /
     5
-the answer is:
-3
-because the path contains:
+the longest path is:
 3 → 9 → 5
-which has 3 nodes.
+which contains 3 nodes.
+Therefore:
+Maximum Depth = 3
 Key Idea
 The recursive formula is:
 depth(node)
@@ -112,11 +119,11 @@ depth(node)
 )
 And the base case is:
 depth(null) = 0
-So recursively:
+So recursion works from the bottom back up:
 null → 0
 leaf → 1
-parent of leaf → 2
-...
+parent → 2
+grandparent → 3
 Complexity
 Time Complexity
 O(n)
@@ -131,10 +138,11 @@ O(n)
 What I Learned
 How to calculate the maximum depth of a binary tree using recursion.
 How recursive calls return subtree depths.
-Why the current node contributes +1.
 Why null returns 0.
-Why a leaf returns 1 in this problem.
-The difference between counting depth using nodes and counting it using edges.
+Why a leaf returns 1.
+Why the current node contributes +1.
+How recursion builds the final answer while returning back up.
+The difference between counting depth using nodes and counting depth using edges.
 Why it is important to read the exact definition of depth or height in each problem.
 Pattern
 Tree / DFS / Recursion
