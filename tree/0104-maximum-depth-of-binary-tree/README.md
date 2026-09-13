@@ -36,6 +36,8 @@ public int maxDepth(TreeNode root) {
 
     return 1 + Math.max(leftDepth, rightDepth);
 }
+
+
 Understanding the Recursion
 Consider this tree:
     3
