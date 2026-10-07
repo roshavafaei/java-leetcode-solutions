@@ -46,7 +46,7 @@ For every problem, I follow this workflow:
 |-------|--------|
 | Linked List | 7 |
 | Arrays | 9 |
-| Stack | 5 |
+| Stack | 6 |
 | Queue | 5 |
 | Hash Table | 4 |
 | Trees | 6 |
